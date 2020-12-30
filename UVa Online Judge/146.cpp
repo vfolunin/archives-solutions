@@ -10,31 +10,10 @@ bool solve() {
     if (s == "#")
         return 0;
 
-    vector<int> maxK(26);
-    for (char c : s)
-        maxK[c - 'a']++;
-
-    vector<int> curK = maxK;
-    for (int i = s.size() - 1; i >= 0; i--) {
-        curK[s[i] - 'a']--;
-
-        for (int j = s[i] - 'a' + 1; j < 26; j++) {
-            if (curK[j] == maxK[j])
-                continue;
-
-            s[i] = 'a' + j;
-            curK[j]++;
-
-            cout << s.substr(0, i + 1);
-            for (int c = 0; c < 26; c++)
-                cout << string(maxK[c] - curK[c], 'a' + c);
-            cout << "\n";
-
-            return 1;
-        }
-    }
-
-    cout << "No Successor\n";
+    if (next_permutation(s.begin(), s.end()))
+        cout << s << "\n";
+    else
+        cout << "No Successor\n";
     return 1;
 }
 
