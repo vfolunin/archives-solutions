@@ -19,7 +19,7 @@ void dfs(vector<vector<pair<int, int>>> &tree, int v, int p, vector<int> &dist) 
 bool solve(int test) {
     int vertexCount, edgeCount, queryCount;
     cin >> vertexCount >> edgeCount >> queryCount;
-    
+
     if (!vertexCount)
         return 0;
 
@@ -32,6 +32,7 @@ bool solve(int test) {
     }
 
     vector<vector<pair<int, int>>> mst(vertexCount);
+    vector<int> used(vertexCount);
     vector<int> dist(vertexCount, 1e9);
     vector<int> from(vertexCount, -1);
     set<pair<int, int>> q;
@@ -47,13 +48,14 @@ bool solve(int test) {
             auto [_, v] = *q.begin();
             q.erase(q.begin());
 
+            used[v] = 1;
             if (from[v] != -1) {
                 mst[from[v]].push_back({ v, dist[v] });
                 mst[v].push_back({ from[v], dist[v] });
             }
 
             for (auto [to, w] : graph[v]) {
-                if (w < dist[to]) {
+                if (!used[to] && w < dist[to]) {
                     q.erase({ dist[to], to });
                     dist[to] = w;
                     from[to] = v;
