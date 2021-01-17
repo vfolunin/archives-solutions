@@ -55,22 +55,16 @@ void solve() {
             edges.push_back({ a, b, (x[a] - x[b]) * (x[a] - x[b]) + (y[a] - y[b]) * (y[a] - y[b]) });
     sort(edges.begin(), edges.end());
 
-    int l = -1, r = 1e9;
-    while (l + 1 < r) {
-        int m = l + (r - l) / 2;
+    DSU dsu(vertexCount);
+    int res = 0;
 
-        DSU dsu(vertexCount);
-        for (int i = 0; i < edges.size() && edges[i].w <= m; i++)
-            dsu.merge(edges[i].a, edges[i].b);
-
-        if (dsu.ccCount > ccCount)
-            l = m;
-        else
-            r = m;
+    for (int i = 0; i < edges.size() && dsu.ccCount > ccCount; i++) {
+        dsu.merge(edges[i].a, edges[i].b);
+        res = edges[i].w;
     }
 
     cout.precision(2);
-    cout << fixed << sqrt(r) << "\n";
+    cout << fixed << sqrt(res) << "\n";
 }
 
 int main() {
