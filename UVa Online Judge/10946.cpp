@@ -6,40 +6,54 @@
 #include <string>
 using namespace std;
 
-vector<int> getPrimes() {
-    const int N = 1e6;
-    vector<int> isPrime(N, 1);
-    vector<int> primes;
-    for (int i = 2; i < N; i++) {
-        if (isPrime[i]) {
-            primes.push_back(i);
-            for (long long j = 1LL * i * i; j < N; j += i)
-                isPrime[j] = 0;
-        }
+int dfs(vector<string> &a, int y, int x, char c) {
+    a[y][x] = '.';
+    int res = 1;
+
+    static int dy[] = { -1, 0, 1, 0 };
+    static int dx[] = { 0, 1, 0, -1 };
+
+    for (int d = 0; d < 4; d++) {
+        int ty = y + dy[d], tx = x + dx[d];
+        if (0 <= ty && ty < a.size() && 0 <= tx && tx < a[0].size() && a[ty][tx] == c)
+            res += dfs(a, ty, tx, c);
     }
-    return primes;
+
+    return res;
 }
 
-bool solve() {
-    int n;
-    cin >> n;
+bool compare(pair<char, int> &a, pair<char, int> &b) {
+    if (a.second != b.second)
+        return a.second > b.second;
+    return a.first < b.first;
+}
 
-    if (!n)
+bool solve(int test) {
+    int h, w;
+    cin >> h >> w;
+
+    if (!h && !w)
         return 0;
 
-    cout << n << ":\n";
+    vector<string> a(h);
+    for (string &row : a)
+        cin >> row;
 
-    static vector<int> primes = getPrimes();
-    for (int i = 0, j = primes.size() - 1; i <= j; i++) {
-        while (i <= j && primes[i] + primes[j] > n)
-            j--;
-        if (i <= j && primes[i] + primes[j] == n) {
-            cout << primes[i] << "+" << primes[j] << "\n";
-            return 1;
+    vector<pair<char, int>> res;
+    for (int y = 0; y < h; y++) {
+        for (int x = 0; x < w; x++) {
+            if (a[y][x] != '.') {
+                char c = a[y][x];
+                res.emplace_back(c, dfs(a, y, x, c));
+            }
         }
     }
 
-    cout << "NO WAY!\n";
+    sort(res.begin(), res.end(), compare);
+
+    cout << "Problem " << test << ":\n";
+    for (auto &[c, k] : res)
+        cout << c << " " << k << "\n";
     return 1;
 }
 
@@ -47,5 +61,5 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    while (solve());
+    for (int test = 1; solve(test); test++);
 }
