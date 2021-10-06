@@ -13,14 +13,7 @@ int main() {
     int n;
     cin >> n;
 
-    int in = 0;
-    for (int i = 0; i < n; i++) {
-        int x;
-        cin >> x;
-
-        in += 10 <= x && x <= 20;
-    }
-
-    cout << in << " in\n";
-    cout << n - in << " out\n";
+    for (int i = 1; i <= n; i++)
+        if (n % i == 0)
+            cout << i << "\n";
 }

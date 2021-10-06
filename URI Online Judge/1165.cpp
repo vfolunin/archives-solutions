@@ -13,14 +13,14 @@ int main() {
     int n;
     cin >> n;
 
-    int in = 0;
     for (int i = 0; i < n; i++) {
-        int x;
-        cin >> x;
+        int p;
+        cin >> p;
 
-        in += 10 <= x && x <= 20;
+        bool isPrime = p > 1;
+        for (int d = 2; isPrime && d * d <= p; d++)
+            isPrime &= p % d != 0;
+
+        cout << p << (isPrime ? "" : " nao") << " eh primo\n";
     }
-
-    cout << in << " in\n";
-    cout << n - in << " out\n";
 }

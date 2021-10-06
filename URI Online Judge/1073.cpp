@@ -10,12 +10,9 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    int even = 0;
-    for (int i = 0; i < 5; i++) {
-        int x;
-        cin >> x;
-        even += x % 2 == 0;
-    }
+    int n;
+    cin >> n;
 
-    cout << even << " valores pares\n";
+    for (int i = 2; i <= n; i += 2)
+        cout << i << "^2 = " << i * i << "\n";
 }

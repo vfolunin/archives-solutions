@@ -10,22 +10,25 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    int row;
     char op;
-    cin >> row >> op;
+    cin >> op;
 
     vector<vector<double>> a(12, vector<double>(12));
     for (vector<double> &row : a)
         for (double &x : row)
             cin >> x;
 
-    double res = 0;
-    for (double x : a[row])
-        res += x;
+    double num = 0, den = 0;
+    for (int row = 0; row < a.size(); row++) {
+        for (int col = row + 1; col < a.size(); col++) {
+            num += a[row][col];
+            den++;
+        }
+    }
 
     if (op == 'M')
-        res /= 12;
+        num /= den;
 
     cout.precision(1);
-    cout << fixed << res << "\n";
+    cout << fixed << num << "\n";
 }

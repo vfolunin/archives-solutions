@@ -10,17 +10,10 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    int n;
-    cin >> n;
+    int width, limit;
+    cin >> width >> limit;
 
-    int in = 0;
-    for (int i = 0; i < n; i++) {
-        int x;
-        cin >> x;
-
-        in += 10 <= x && x <= 20;
-    }
-
-    cout << in << " in\n";
-    cout << n - in << " out\n";
+    for (int i = 1; i <= limit; )
+        for (int j = 0; j < width; i++, j++)
+            cout << i << (j + 1 < width ? " " : "\n");
 }

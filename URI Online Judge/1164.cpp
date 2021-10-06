@@ -13,14 +13,11 @@ int main() {
     int n;
     cin >> n;
 
-    int in = 0;
+    set<int> perfect = { 6, 28, 496, 8128, 33550336 };
+
     for (int i = 0; i < n; i++) {
-        int x;
-        cin >> x;
-
-        in += 10 <= x && x <= 20;
+        int p;
+        cin >> p;
+        cout << p << (perfect.count(p) ? "" : " nao") << " eh perfecto\n";
     }
-
-    cout << in << " in\n";
-    cout << n - in << " out\n";
 }

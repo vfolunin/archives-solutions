@@ -10,9 +10,9 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    int row;
+    int col;
     char op;
-    cin >> row >> op;
+    cin >> col >> op;
 
     vector<vector<double>> a(12, vector<double>(12));
     for (vector<double> &row : a)
@@ -20,8 +20,8 @@ int main() {
             cin >> x;
 
     double res = 0;
-    for (double x : a[row])
-        res += x;
+    for (vector<double> &row : a)
+        res += row[col];
 
     if (op == 'M')
         res /= 12;
