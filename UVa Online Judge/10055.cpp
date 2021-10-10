@@ -6,37 +6,18 @@
 #include <string>
 using namespace std;
 
-void solve() {
-    int targetCost;
-    cin >> targetCost;
+bool solve() {
+    long long a, b;
+    if (!(cin >> a >> b))
+        return 0;
 
-    vector<int> minBills(20001, 1e9);
-    minBills[0] = 0;
-
-    int billCount;
-    cin >> billCount;
-
-    for (int i = 0; i < billCount; i++) {
-        int billCost;
-        cin >> billCost;
-        for (int cost = 20000; cost >= billCost; cost--)
-            if (minBills[cost] > minBills[cost - billCost] + 1)
-                minBills[cost] = minBills[cost - billCost] + 1;
-    }
-
-    while (minBills[targetCost] == 1e9)
-        targetCost++;
-
-    cout << targetCost << " " << minBills[targetCost] << "\n";
+    cout << abs(a - b) << "\n";
+    return 1;
 }
 
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
-
-    int n;
-    cin >> n;
-
-    for (int i = 0; i < n; i++)
-        solve();
+    
+    while (solve());
 }

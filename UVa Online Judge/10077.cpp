@@ -7,37 +7,40 @@
 using namespace std;
 
 bool solve() {
-    int n;
-    cin >> n;
+    int num, den;
+    cin >> num >> den;
 
-    if (!n)
+    if (num == 1 && den == 1)
         return 0;
 
-    map<set<int>, int> courseSetPopularity;
-    int maxPopularity = 0;
+    int lNum = 0, lDen = 1;
+    int rNum = 1, rDen = 0;
 
-    for (int i = 0; i < n; i++) {
-        set<int> courseSet;
-        for (int j = 0; j < 5; j++) {
-            int course;
-            cin >> course;
-            courseSet.insert(course);
+    while (1) {
+        int mNum = lNum + rNum;
+        int mDen = lDen + rDen;
+
+        if (num == mNum && den == mDen)
+            break;
+
+        if (1LL * num * mDen < 1LL * mNum * den) {
+            cout << "L";
+            rNum = mNum;
+            rDen = mDen;
+        } else {
+            cout << "R";
+            lNum = mNum;
+            lDen = mDen;
         }
-        maxPopularity = max(maxPopularity, ++courseSetPopularity[courseSet]);
     }
 
-    int res = 0;
-    for (auto &[_, popularity] : courseSetPopularity)
-        if (popularity == maxPopularity)
-            res += popularity;
-
-    cout << res << "\n";
+    cout << "\n";
     return 1;
 }
 
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
-
+    
     while (solve());
 }
