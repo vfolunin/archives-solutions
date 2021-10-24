@@ -14,6 +14,7 @@ int main() {
     cin >> slotCount >> cardCount;
 
     set<int> cards;
+
     for (int i = 0; i < cardCount; i++) {
         int card;
         cin >> card;
