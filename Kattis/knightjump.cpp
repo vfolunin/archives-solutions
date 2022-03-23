@@ -12,9 +12,9 @@ int bfs(vector<string> &a, int sy, int sx) {
     vector<vector<int>> dist(size, vector<int>(size, 1e9));
     queue<int> q;
 
-        dist[sy][sx] = 0;
-        q.push(sy);
-        q.push(sx);
+    dist[sy][sx] = 0;
+    q.push(sy);
+    q.push(sx);
 
     while (!q.empty()) {
         int y = q.front();
