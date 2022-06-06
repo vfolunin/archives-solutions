@@ -1,26 +1,17 @@
 class Solution {
 public:
-    bool lemonadeChange(vector<int> &bills) {
-        int k5 = 0, k10 = 0;
-        for (int bill : bills) {
-            if (bill == 5) {
-                k5++;
-            } else if (bill == 10) {
-                if (k5 < 1)
+    bool checkValid(vector<vector<int>> &a) {
+        vector<vector<int>> row(a.size(), vector<int>(a.size()));
+        vector<vector<int>> col(a.size(), vector<int>(a.size()));
+        
+        for (int y = 0; y < a.size(); y++) {
+            for (int x = 0; x < a.size(); x++) {
+                if (row[y][a[y][x] - 1] || col[x][a[y][x] - 1])
                     return 0;
-                k5--;
-                k10++;
-            } else {
-                if (k5 < 3 && (k5 < 1 || k10 < 1))
-                    return 0;
-                if (k5 >= 1 && k10 >= 1) {
-                    k5--;
-                    k10--;
-                } else {
-                    k5 -= 3;
-                }
+                row[y][a[y][x] - 1] = col[x][a[y][x] - 1] = 1;
             }
         }
+        
         return 1;
     }
 };

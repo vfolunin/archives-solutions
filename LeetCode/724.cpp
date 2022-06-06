@@ -1,26 +1,17 @@
 class Solution {
 public:
-    bool lemonadeChange(vector<int> &bills) {
-        int k5 = 0, k10 = 0;
-        for (int bill : bills) {
-            if (bill == 5) {
-                k5++;
-            } else if (bill == 10) {
-                if (k5 < 1)
-                    return 0;
-                k5--;
-                k10++;
-            } else {
-                if (k5 < 3 && (k5 < 1 || k10 < 1))
-                    return 0;
-                if (k5 >= 1 && k10 >= 1) {
-                    k5--;
-                    k10--;
-                } else {
-                    k5 -= 3;
-                }
-            }
+    int pivotIndex(vector<int> &a) {
+        int lSum = 0, rSum = 0;
+        for (int value : a)
+            rSum += value;
+        
+        for (int i = 0; i < a.size(); i++) {
+            rSum -= a[i];
+            if (lSum == rSum)
+                return i;
+            lSum += a[i];
         }
-        return 1;
+        
+        return -1;
     }
 };

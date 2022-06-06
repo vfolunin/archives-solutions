@@ -1,20 +1,25 @@
 class Solution {
-    int rec(vector<int> &a, int l, int r) {
-        if (l == r)
-            return a[l];
-        
-        int m = l + (r - l) / 2;
-        int vl = rec(a, l, m);
-        int vr = rec(a, m + 1, r);
-        
-        if (l / (r - l + 1) % 2)
-            return max(vl, vr);
-        else
-            return min(vl, vr);
-    }
-    
 public:
-    int minMaxGame(vector<int> &a) {
-        return rec(a, 0, a.size() - 1);
+    vector<string> findRestaurant(vector<string> &a, vector<string> &b) {
+        unordered_map<string, int> posInA;
+        for (int i = 0; i < a.size(); i++)
+            posInA[a[i]] = i;
+        
+        int resSum = 1e9;
+        vector<string> res;
+        
+        for (int i = 0; i < b.size(); i++) {
+            if (posInA.count(b[i])) {
+                int sum = posInA[b[i]] + i;
+                if (resSum > sum) {
+                    resSum = sum;
+                    res = { b[i] };
+                } else if (resSum == sum) {
+                    res.push_back(b[i]);
+                }
+            }
+        }
+        
+        return res;
     }
 };
