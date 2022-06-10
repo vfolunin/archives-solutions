@@ -16,6 +16,8 @@ class Solution {
             char dash;
             ss >> y >> dash >> m >> dash >> d;
         }
+        
+        Date(int y, int m, int d) : y(y), m(m), d(d) {}
 
         bool operator < (const Date &that) const {
             if (y != that.y)
@@ -40,12 +42,11 @@ class Solution {
     };
     
 public:
-    int daysBetweenDates(string sa, string sb) {
-        Date a(sa), b(sb);
-        if (b < a)
-            swap(a, b);
+    int dayOfYear(string s) {
+        Date b(s);
+        Date a(b.y, 1, 1);
         
-        int res = 0;
+        int res = 1;
         while (a < b) {
             a++;
             res++;
