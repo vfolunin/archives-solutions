@@ -1,48 +1,19 @@
-class MyCircularQueue {
-    vector<int> a;
-    int head = 0, tail = 0, size = 0;
+class MyCalendar {
+    set<pair<int, int>> segments;
     
-public:
-    MyCircularQueue(int k) : a(k) {}
+    static bool intersects(int l, int r, set<pair<int, int>>::iterator it) {
+        auto [l2, r2] = *it;
+        return l < r2 && l2 < r;
+    }
     
-    bool enQueue(int value) {
-        if (isFull())
+public:    
+    bool book(int l, int r) {
+        auto it = segments.lower_bound({ l, r });
+        if (it != segments.end() && intersects(l, r, it) || 
+            it != segments.begin() && intersects(l, r, prev(it)))
             return 0;
         
-        a[tail] = value;
-        tail = (tail + 1) % a.size();
-        size++;
+        segments.insert({ l, r });
         return 1;
-    }
-    
-    bool deQueue() {
-        if (isEmpty())
-            return 0;
-        
-        head = (head + 1) % a.size();
-        size--;
-        return 1;
-    }
-    
-    int Front() {
-        if (isEmpty())
-            return -1;
-        
-        return a[head];
-    }
-    
-    int Rear() {
-        if (isEmpty())
-            return -1;
-        
-        return a[(tail + a.size() - 1) % a.size()];
-    }
-    
-    bool isEmpty() {
-        return !size;
-    }
-    
-    bool isFull() {
-        return size == a.size();
     }
 };
