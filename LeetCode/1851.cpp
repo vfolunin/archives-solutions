@@ -7,7 +7,7 @@ class Treap {
         Node(int key, int value) : key(key), priority(gen()), value(value), minValue(value) {}
     } *root = 0;
     
-    int getMinValue(Node *n) const {
+    int getMinValue(Node *n) {
         return n ? n->minValue : 1e9;
     }
     
