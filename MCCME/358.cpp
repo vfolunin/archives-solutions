@@ -1,0 +1,36 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <set>
+#include <map>
+#include <string>
+using namespace std;
+
+int main() {
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+
+    int h, w;
+    cin >> h >> w;
+
+    int maxValue = 0, maxSum = 0, maxIndex = 0;
+
+    for (int y = 0; y < h; y++) {
+        int curValue = 0, curSum = 0;
+
+        for (int x = 0; x < w; x++) {
+            int value;
+            cin >> value;
+            curValue = max(curValue, value);
+            curSum += value;
+        }
+
+        if (maxValue < curValue || maxValue == curValue && maxSum < curSum) {
+            maxValue = curValue;
+            maxSum = curSum;
+            maxIndex = y;
+        }
+    }
+
+    cout << maxIndex;
+}
