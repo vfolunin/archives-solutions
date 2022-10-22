@@ -1,0 +1,21 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <set>
+#include <map>
+#include <string>
+using namespace std;
+
+int sum(int a, int b) {
+    return b ? sum(a + 1, b - 1) : a;
+}
+
+int main() {
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+
+    int a, b;
+    cin >> a >> b;
+
+    cout << sum(a, b);
+}
