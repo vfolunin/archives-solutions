@@ -68,7 +68,7 @@ struct Line {
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
-
+ 
     Line l;
     double dist;
     cin >> l >> dist;
