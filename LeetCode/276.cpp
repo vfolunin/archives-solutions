@@ -1,18 +1,14 @@
 class Solution {
 public:
-    int bestTeamScore(vector<int> &scores, vector<int> &ages) {
-        vector<pair<int, int>> pairs(scores.size());
-        for (int i = 0; i < pairs.size(); i++)
-            pairs[i] = { scores[i], ages[i] };
-        sort(pairs.begin(), pairs.end());
+    int numWays(int n, int k) {
+        vector<long long> ways(max(3, n + 1));
         
-        vector<int> res(pairs.size());
-        for (int i = 0; i < res.size(); i++) {
-            res[i] = pairs[i].first;
-            for (int j = 0; j < i; j++)
-                if (pairs[j].second <= pairs[i].second)
-                    res[i] = max(res[i], res[j] + pairs[i].first);
-        }
-        return *max_element(res.begin(), res.end());
+        ways[1] = k;
+        ways[2] = k * k;
+
+        for (int i = 3; i <= n; i++)
+            ways[i] = (ways[i - 1] + ways[i - 2]) * (k - 1);
+
+        return ways[n];
     }
 };
