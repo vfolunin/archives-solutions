@@ -1,36 +1,21 @@
 class TicTacToe {
     int size;
-    vector<vector<map<pair<int, int>, int>>> row;
+    vector<vector<int>> row, col;
+    vector<int> d1, d2;
 
 public:
     TicTacToe(int size) :
-        size(size), row(3, vector<map<pair<int, int>, int>>(8)) {}
+        size(size), row(2, vector<int>(size)), col(2, vector<int>(size)), d1(2), d2(2) {}
     
     int move(int y, int x, int p) {
-        static const vector<int> DY = { -1, -1, -1, 0, 1, 1, 1, 0 };
-        static const vector<int> DX = { -1, 0, 1, 1, 1, 0, -1, -1 };
+        p--;
 
-        vector<int> curRow(DY.size(), 1);
-        for (int d = 0; d < DY.size(); d++) {
-            int ty = y + DY[d];
-            int tx = x + DX[d];
-            if (auto it = row[p][d].find({ ty, tx }); it != row[p][d].end())
-                curRow[d] += it->second;
-        }
-
-        for (int d = 0, rd = DY.size() / 2; d < DY.size(); d++, rd = (rd + 1) % DY.size()) {
-            if (curRow[d] + curRow[rd] > size)
-                return p;
-
-            row[p][d][{ y, x }] = curRow[d];
-
-            if (curRow[d] > 1) {
-                int ty = y + DY[d] * (curRow[d] - 1);
-                int tx = x + DX[d] * (curRow[d] - 1);
-                row[p][rd][{ ty, tx }] += curRow[rd];
-            }
-        }
-
+        if (++row[p][y] == size ||
+            ++col[p][x] == size ||
+            y == x && ++d1[p] == size ||
+            y + x == size - 1 && ++d2[p] == size)
+            return p + 1;
+        
         return 0;
     }
 };
