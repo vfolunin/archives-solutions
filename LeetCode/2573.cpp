@@ -33,10 +33,16 @@ public:
                 return "";
         }
         
-        for (int i = 0; i < size; i++)
-            for (int j = 0; j < size; j++)
-                if (equal[i][j] ^ (res[i] == res[j]))
+        for (int i = size - 1; i >= 0; i--) {
+            for (int j = size - 1; j >= 0; j--) {
+                int lcpValue = (res[i] == res[j]);
+                if (lcpValue && i + 1 < size && j + 1 < size)
+                    lcpValue += lcp[i + 1][j + 1];
+                    
+                if (lcpValue != lcp[i][j])
                     return "";
+            }
+        }
         
         return res;
     }
