@@ -35,9 +35,9 @@ public:
                 if (hasEdge[a][b])
                     graphA[a].push_back(b);
         
-        int res = 0;
-        for (int b : kuhn(graphA, vertexCountB))
-            res += b != -1;
-        return res;
+        int matchingSize = 0;
+        for (int vFromA : kuhn(graphA, vertexCountB))
+            matchingSize += vFromA != -1;
+        return matchingSize;
     }
 };
