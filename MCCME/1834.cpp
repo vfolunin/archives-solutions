@@ -24,6 +24,7 @@ vector<int> getTwins(int n) {
             twins.push_back(primes[i]);
     return twins;
 }
+
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
