@@ -28,13 +28,8 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    string pattern;
-    cin >> pattern;
+    string word, pattern;
+    cin >> word >> pattern;
 
-    for (int i = 0; i < 5; i++) {
-        string word;
-        cin >> word;
-
-        cout << (matches(pattern, word) ? "YES\n" : "NO\n");
-    }
+    cout << (matches(pattern, word) ? "YES\n" : "NO\n");
 }
