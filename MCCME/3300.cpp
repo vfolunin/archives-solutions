@@ -70,44 +70,31 @@ class Graph {
 
     vector<Edge> edges;
     vector<vector<int>> graph;
-    vector<int> dist, edgeTo, index;
+    vector<bool> visited;
+    vector<int> edgeTo;
 
-    bool bfs(int start, int finish) {
-        dist.assign(graph.size(), 1e9);
+    void bfs(int start) {
         queue<int> q;
-
-        dist[start] = 0;
+        visited[start] = 1;
         q.push(start);
-
         while (!q.empty()) {
             int v = q.front();
             q.pop();
-
             for (int e : graph[v]) {
                 int to = edges[e].other(v);
-                if (edges[e].capacityTo(to) && dist[to] > dist[v] + 1) {
-                    dist[to] = dist[v] + 1;
+                if (!visited[to] && edges[e].capacityTo(to)) {
+                    edgeTo[to] = e;
+                    visited[to] = 1;
                     q.push(to);
                 }
             }
         }
-
-        return dist[finish] != 1e9;
     }
 
-    bool dfs(int v, int finish) {
-        if (v == finish)
-            return 1;
-
-        for (; index[v] < graph[v].size(); index[v]++) {
-            int e = graph[v][index[v]], to = edges[e].other(v);
-            if (edges[e].capacityTo(to) && dist[to] == dist[v] + 1 && dfs(to, finish)) {
-                edgeTo[to] = e;
-                return 1;
-            }
-        }
-
-        return 0;
+    bool hasPath(int start, int finish) {
+        visited.assign(visited.size(), 0);
+        bfs(start);
+        return visited[finish];
     }
 
     int bottleneckCapacity(int start, int finish) {
@@ -124,7 +111,7 @@ class Graph {
 
 public:
     Graph(int vertexCount) :
-        graph(vertexCount), dist(vertexCount), edgeTo(vertexCount), index(vertexCount) {}
+        graph(vertexCount), visited(vertexCount), edgeTo(vertexCount) {}
 
     void addEdge(int from, int to, int capacity) {
         edges.push_back(Edge(from, to, capacity));
@@ -136,13 +123,10 @@ public:
         for (auto &[a, b, capacity, flow] : edges)
             flow = 0;
         long long flow = 0;
-        while (bfs(start, finish)) {
-            index.assign(graph.size(), 0);
-            while (dfs(start, finish)) {
-                int deltaFlow = bottleneckCapacity(start, finish);
-                addFlow(start, finish, deltaFlow);
-                flow += deltaFlow;
-            }
+        while (hasPath(start, finish)) {
+            int deltaFlow = bottleneckCapacity(start, finish);
+            addFlow(start, finish, deltaFlow);
+            flow += deltaFlow;
         }
         return flow;
     }
