@@ -31,7 +31,7 @@ struct BIT {
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
-
+ 
     int size;
     cin >> size;
 
