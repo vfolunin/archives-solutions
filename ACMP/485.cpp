@@ -15,7 +15,7 @@ int isGood(int n, int divisor, int remainder) {
     return 1;
 }
 
-void main() {
+int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
