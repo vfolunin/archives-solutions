@@ -6,26 +6,44 @@
 #include <string>
 using namespace std;
 
-pair<int, int> read() {
-    char x, y;
-    cin >> x >> y;
-    return { y - '1', x - 'A' };
+string fromDec(long long n, int base) {
+    static const string DIGITS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    string res;
+    while (n >= base) {
+        res += DIGITS[n % base];
+        n /= base;
+    }
+    res += DIGITS[n];
+    reverse(res.begin(), res.end());
+    return res;
+}
+
+bool isPalindrome(const string &s) {
+    for (int l = 0, r = s.size() - 1; l < r; l++, r--)
+        if (s[l] != s[r])
+            return 0;
+    return 1;
 }
 
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    auto [qy, qx] = read();
-    auto [ry, rx] = read();
-    auto [ny, nx] = read();
+    int n;
+    cin >> n;
 
-    int res = 0;
-    for (int y = 0; y < 8; y++)
-        for (int x = 0; x < 8; x++)
-            res += (y != qy || x != qx) && (y != ry || x != rx) && (y != ny || x != nx) &&
-                   (y == qy || x == qx || y + x == qy + qx || y - x == qy - qx ||
-                    y == ry || x == rx || abs(y - ny) * abs(x - nx) == 2);
+    vector<int> bases;
+    for (int base = 2; base <= 36; base++)
+        if (isPalindrome(fromDec(n, base)))
+            bases.push_back(base);
 
-    cout << res;
+    if (bases.size() == 0)
+        cout << "none\n";
+    else if (bases.size() == 1)
+        cout << "unique\n";
+    else
+        cout << "multiple\n";
+
+    for (int base : bases)
+        cout << base << " ";
 }
