@@ -24,7 +24,7 @@ void dfs(vector<string> &a, int y, int x) {
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
-
+ 
     int h, w;
     cin >> h >> w;
 
