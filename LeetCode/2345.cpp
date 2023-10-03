@@ -7,19 +7,20 @@ public:
     int visibleMountains(vector<vector<int>> &a) {
         sort(a.begin(), a.end());
 
-        vector<int> stack;
-        int duplicateCount = 0;
-
+        vector<pair<int, int>> stack;
         for (int i = 0; i < a.size(); i++) {
-            duplicateCount += !stack.empty() && a[stack.back()] == a[i];
+            bool hasDuplicate = !stack.empty() && a[stack.back().first] == a[i];
 
-            while (!stack.empty() && shades(a[i], a[stack.back()]))
+            while (!stack.empty() && shades(a[i], a[stack.back().first]))
                 stack.pop_back();
             
-            if (stack.empty() || !shades(a[stack.back()], a[i]))
-                stack.push_back(i);
+            if (stack.empty() || !shades(a[stack.back().first], a[i]))
+                stack.push_back({ i, hasDuplicate });
         }
 
-        return max((int)stack.size() - duplicateCount, 0);
+        int res = 0;
+        for (auto &[_, hasDuplicate] : stack)
+            res += !hasDuplicate;
+        return res;
     }
 };

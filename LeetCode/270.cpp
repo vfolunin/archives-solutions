@@ -6,7 +6,9 @@ class Solution {
         rec(n->left, target, res);
         rec(n->right, target, res);
 
-        if (abs(target - res) > abs(target - n->val))
+        double resDiff = abs(target - res);
+        double diff = abs(target - n->val);
+        if (resDiff > diff || resDiff == diff && res > n->val)
             res = n->val;
     }
 

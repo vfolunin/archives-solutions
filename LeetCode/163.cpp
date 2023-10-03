@@ -1,7 +1,7 @@
 class Solution {
 public:
-    vector<string> findMissingRanges(vector<int> &a, int l, int r) {
-        vector<pair<int, int>> segments;
+    vector<vector<int>> findMissingRanges(vector<int> &a, int l, int r) {
+        vector<vector<int>> segments;
 
         if (a.empty()) {
             segments.push_back({ l, r });
@@ -17,12 +17,6 @@ public:
                 segments.push_back({ a.back() + 1, r });
         }
 
-        vector<string> res;
-        for (auto &[l, r] : segments) {
-            res.push_back(to_string(l));
-            if (l < r)
-                res.back() += "->" + to_string(r);
-        }
-        return res;
+        return segments;
     }
 };

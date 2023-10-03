@@ -4,7 +4,7 @@ class Solution {
     }
     
 public:
-    bool PredictTheWinner(vector<int> &p) {
+    bool predictTheWinner(vector<int> &p) {
         partial_sum(p.begin(), p.end(), p.begin());
         
         vector<vector<int>> win(p.size(), vector<int>(p.size()));
