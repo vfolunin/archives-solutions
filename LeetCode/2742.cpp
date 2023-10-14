@@ -1,10 +1,13 @@
 class Solution {    
 public:
     int paintWalls(vector<int> &price, vector<int> &time) {
-        for (int &t : time)
+        int totalTime = 0;
+        for (int &t : time) {
             t++;
+            totalTime += t;
+        }
         
-        vector<int> minCost(price.size() * 2 + 1, 1e9);
+        vector<int> minCost(totalTime + 1, 1e9);
         minCost[0] = 0;
         
         for (int i = 0; i < price.size(); i++)
