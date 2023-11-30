@@ -1,0 +1,32 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <set>
+#include <map>
+#include <string>
+using namespace std;
+
+int digitSum(int n) {
+    int sum = 0;
+    while (n) {
+        sum += n % 10;
+        n /= 10;
+    }
+    return sum;
+}
+
+int main() {
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+
+    int size;
+    cin >> size;
+
+    vector<int> a(size);
+    for (int &value : a)
+        cin >> value;
+
+    cout << *min_element(a.rbegin(), a.rend(), [](int lhs, int rhs) {
+        return digitSum(lhs) < digitSum(rhs);
+    });
+}
