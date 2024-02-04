@@ -9,16 +9,19 @@ using namespace std;
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
-  
+
     int size;
     cin >> size;
 
     unordered_set<int> values;
+
     for (int i = 0; i < size; i++) {
         int value;
         cin >> value;
-        values.insert(value);
-    }
 
-    cout << values.size();
+        if (!values.count(value)) {
+            values.insert(value);
+            cout << value << " ";
+        }
+    }
 }

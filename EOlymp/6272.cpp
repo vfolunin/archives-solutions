@@ -9,9 +9,9 @@ using namespace std;
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
- 
-    long long n;
-    cin >> n;
 
-    cout << n / 1000;
+    int a, b, c, d;
+    cin >> a >> b >> c >> d;
+
+    cout << b + c + d - a;
 }
