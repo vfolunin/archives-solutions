@@ -1,8 +1,8 @@
 class Solution {
 public:
-    vector<string> getWordsInLongestSubsequence(int size, vector<string> &words, vector<int> &a) {
-        vector<int> len(size, 1), from(size, -1);
-        for (int i = 0; i < size; i++) {
+    vector<string> getLongestSubsequence(vector<string> &words, vector<int> &a) {
+        vector<int> len(a.size(), 1), from(a.size(), -1);
+        for (int i = 0; i < a.size(); i++) {
             for (int j = 0; j < i; j++) {
                 if (a[j] != a[i] && len[i] < len[j] + 1) {
                     len[i] = len[j] + 1;

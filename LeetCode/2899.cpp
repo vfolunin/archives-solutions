@@ -1,16 +1,16 @@
 class Solution {
 public:
-    vector<int> lastVisitedIntegers(vector<string> &ops) {
-        vector<int> values, res;
+    vector<int> lastVisitedIntegers(vector<int> &a) {
+        vector<int> seen, res;
         int i = 0;
         
-        for (string &op : ops) {
-            if (op == "prev") {
+        for (int &value : a) {
+            if (value == -1) {
                 i--;
-                res.push_back(i >= 0 ? values[i] : -1);
+                res.push_back(0 <= i ? seen[i] : -1);
             } else {
-                values.push_back(stoi(op));
-                i = values.size();
+                seen.push_back(value);
+                i = seen.size();
             }
         }
         
