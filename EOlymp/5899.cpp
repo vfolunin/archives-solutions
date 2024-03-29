@@ -50,12 +50,20 @@ struct BigInteger {
     }
 };
 
+void solve() {
+    BigInteger a, b;
+    cin >> a >> b;
+
+    cout << a * b << "\n";
+}
+
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    BigInteger a, b;
-    cin >> a >> b;
+    int n;
+    cin >> n;
 
-    cout << a * b;
+    for (int i = 0; i < n; i++)
+        solve();
 }
