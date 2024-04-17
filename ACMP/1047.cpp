@@ -19,7 +19,7 @@ int main() {
         for (int x = 0; x < size; x++)
             cin >> price[y][x];
 
-    vector<int> order;
+    vector<int> order(size);
     iota(order.begin(), order.end(), 0);
 
     int res = 1e9;
