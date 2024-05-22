@@ -35,9 +35,9 @@ int main() {
         order.push_back(v);
         q.erase(q.begin());
 
-        for (int from : graph[v])
-            if (!--inDegree[from])
-                q.insert(from);
+        for (int to : graph[v])
+            if (!--inDegree[to])
+                q.insert(to);
     }
 
     if (order.size() == vertexCount) {

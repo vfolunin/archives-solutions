@@ -24,26 +24,36 @@ int main() {
         inDegree[b]++;
     }
 
+    vector<int> dist(vertexCount, 1e9);
     set<int> q;
-    for (int v = 0; v < vertexCount; v++)
-        if (!inDegree[v])
+    for (int v = 0; v < vertexCount; v++) {
+        if (!inDegree[v]) {
+            dist[v] = 0;
             q.insert(v);
-
-    bool isUnique = 1;
-    int size = 0;
+        }
+    }
+    
     while (!q.empty()) {
+        if (q.size() > 1 && dist[*q.begin()] == dist[*next(q.begin())]) {
+            set<int> res = { *q.begin(), *next(q.begin()) };
+            for (int v = 0; res.size() < 3; v++)
+                res.insert(v);
+
+            for (int v : res)
+                cout << v + 1 << " ";
+            return 0;
+        }
+
         int v = *q.begin();
-        isUnique &= q.size() == 1;
-        size++;
         q.erase(q.begin());
 
-        for (int to : graph[v])
-            if (!--inDegree[to])
+        for (int to : graph[v]) {
+            if (!--inDegree[to]) {
+                dist[to] = dist[v] + 1;
                 q.insert(to);
+            }
+        }
     }
 
-    if (size == vertexCount)
-        cout << (isUnique ? "Yes" : "No");
-    else
-        cout << -1;
+    cout << -1;
 }
