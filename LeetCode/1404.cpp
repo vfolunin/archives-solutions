@@ -4,7 +4,6 @@ public:
         int res = 0;
         
         while (s.size() > 1) {
-            cout << s << "\n";
             if (s.back() == '0') {
                 s.pop_back();
                 res++;
