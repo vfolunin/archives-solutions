@@ -9,16 +9,14 @@ using namespace std;
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
-  
-    int size;
-    cin >> size;
 
-    vector<int> a(size);
-    for (int &value : a)
-        cin >> value;
+    int sum;
+    cin >> sum;
 
-    sort(a.rbegin(), a.rend());
-
-    for (int value : a)
-        cout << value << " ";
+    int res = 1e9;
+    for (int k5 = -100; k5 <= 100; k5++)
+        if ((sum - k5 * 5) % 3 == 0)
+            res = min(res, abs(k5) + abs((sum - k5 * 5) / 3));
+    
+    cout << res;
 }
