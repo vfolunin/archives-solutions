@@ -30,7 +30,7 @@ long long bishopPlacements(int size, int bishopCount) {
     }
 
     long long res = 0;
-    for (int bishops = 0; bishops <= bishopCount; ++bishops)
+    for (int bishops = 0; bishops <= bishopCount; bishops++)
         res += placements[size * 2 - 1][bishops] * placements[size * 2 - 2][bishopCount - bishops];
     return res;
 }
