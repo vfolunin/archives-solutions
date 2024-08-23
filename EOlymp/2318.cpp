@@ -61,7 +61,7 @@ struct Graph {
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
- 
+
     int vertexCount, queryCount;
     cin >> vertexCount >> queryCount;
 
