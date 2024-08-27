@@ -2,7 +2,7 @@ class Solution {
     vector<double> dijkstra(vector<vector<pair<int, double>>> &graph, int start) {
         vector<double> dist(graph.size(), 1e9);
         dist[start] = 0;
-        set<pair<int, int>> q = { { dist[start], start } };
+        set<pair<double, int>> q = { { dist[start], start } };
 
         while (!q.empty()) {
             int v = q.begin()->second;
