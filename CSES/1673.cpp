@@ -28,7 +28,7 @@ struct Graph {
         gr[b].push_back(a);
     }
 
-    void dfs(vector<vector<int>> g, int v, vector<int> &reachable) {
+    void dfs(vector<vector<int>> &g, int v, vector<int> &reachable) {
         reachable[v] = 1;
         for (int to : g[v])
             if (!reachable[to])
