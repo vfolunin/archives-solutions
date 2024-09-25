@@ -42,7 +42,7 @@ int main() {
     vector<vector<int>> graphA(vertexCountA);
 
     for (int vFromA = 0; vFromA < vertexCountA; vFromA++) {
-        for (int vFromB = 0; vFromB < vertexCountA; vFromB++) {
+        for (int vFromB = 0; vFromB < vertexCountB; vFromB++) {
             int x;
             cin >> x;
 
