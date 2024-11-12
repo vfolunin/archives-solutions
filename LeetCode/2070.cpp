@@ -7,10 +7,8 @@ public:
             return a[1] > b[1];
         });
         
-        for (int i = 1; i < items.size(); i++) {
+        for (int i = 1; i < items.size(); i++)
             items[i][1] = max(items[i][1], items[i - 1][1]);
-            cout << items[i][0] << " " << items[i][1] << endl;
-        }
         
         vector<int> res(queries.size());
         
