@@ -1,5 +1,5 @@
 target_size, target_sum = [int(_) for _ in input().split()]
-
+ 
 ways = [[0 for sum in range(target_sum + 1)] for size in range(target_size + 1)]
 for digit in range(1, min(9, target_sum) + 1):
     ways[1][digit] = 1
