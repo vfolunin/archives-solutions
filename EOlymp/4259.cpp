@@ -27,7 +27,7 @@ int main() {
             values.insert(value);
             stack.push_back(value);
         } else if (type == 2) {
-            values.erase(stack.back());
+            values.erase(values.find(stack.back()));
             stack.pop_back();
         } else {
             cout << *values.begin() << "\n";
