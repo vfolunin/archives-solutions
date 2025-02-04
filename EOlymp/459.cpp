@@ -1,40 +1,32 @@
 #include <iostream>
 #include <algorithm>
+#include <cmath>
 #include <vector>
 #include <set>
 #include <map>
 #include <string>
 using namespace std;
 
-bool gcd(long long a, long long b, long long c, long long d) {
-    while (1) {
-        if (a == c && b == d)
-            return 1;
-        if (a < b)
-            swap(a, b);
-        if (!b)
-            return 0;
-        if (b == d)
-            return a >= c && (a - c) % b == 0;
-        a %= b;
-    }
-    return 0;
-}
-
-void solve() {
-    long long a, b, c, d;
-    cin >> a >> b >> c >> d;
-
-    cout << (gcd(a, b, c, d) ? "YES\n" : "NO\n");
-}
-
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    int n;
-    cin >> n;
+    int xl, yl, xr, yr, xc, yc, radius;
+    cin >> xl >> yl >> xr >> yr >> xc >> yc >> radius;
 
-    for (int i = 0; i < n; i++)
-        solve();
+    long long res = 0;
+
+    for (int y = yl; y <= yr; y++) {
+        int dy = abs(y - yc);
+        if (dy > radius)
+            continue;
+
+        int dx = sqrt(1.0 * radius * radius - 1.0 * dy * dy);
+        int l = max(xc - dx, xl);
+        int r = min(xc + dx, xr);
+
+        res += max(r - l + 1, 0);
+    }
+
+    cout << res;
 }
