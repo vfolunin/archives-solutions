@@ -13,13 +13,18 @@ int main() {
     int size;
     cin >> size;
 
-    vector<vector<int>> pos(2);
-    for (int i = 0; i < size; i++) {
-        int value;
+    vector<int> a(size * 2);
+    for (int &value : a)
         cin >> value;
 
-        pos[value % 2].push_back(i);
+    int res = 0;
+    while (!a.empty()) {
+        int value = a[0];
+        a.erase(a.begin());
+        auto it = find(a.begin(), a.end(), value);
+        res += it - a.begin();
+        a.erase(it);
     }
 
-    cout << pos[pos[1].size() == 1][0] + 1;
+    cout << res;
 }
