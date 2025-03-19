@@ -1,0 +1,25 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <set>
+#include <map>
+#include <string>
+using namespace std;
+
+int main() {
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+
+    int h, w;
+    cin >> h >> w;
+
+    int res = 0;
+    for (int y = 0; y < h; y++) {
+        string s;
+        cin >> s;
+
+        res += s.find('+') != -1;
+    }
+
+    cout << res;
+}
