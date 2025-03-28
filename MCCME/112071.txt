@@ -1,0 +1,24 @@
+Character 1 finds out the secret.
+Character 2 finds out that character 1 knows the secret.
+Character 1 finds out that character 2 does not know the secret.
+Character 3 finds out that character 1 knows the secret.
+Character 3 finds out that character 2 does not know the secret.
+Character 4 finds out that character 1 knows the secret.
+Character 4 finds out that character 2 does not know the secret.
+Character 2 finds out the secret.
+Character 1 finds out that character 2 knows the secret.
+Character 1 finds out that character 3 does not know the secret.
+Character 3 finds out that character 2 knows the secret.
+Character 2 finds out that character 3 does not know the secret.
+Character 4 finds out that character 2 knows the secret.
+Character 4 finds out that character 3 does not know the secret.
+Character 3 finds out the secret.
+Character 1 finds out that character 3 knows the secret.
+Character 1 finds out that character 4 does not know the secret.
+Character 2 finds out that character 3 knows the secret.
+Character 2 finds out that character 4 does not know the secret.
+Character 4 finds out that character 3 knows the secret.
+Character 3 finds out that character 4 does not know the secret.
+Character 4 finds out the secret.
+Character 1 finds out that character 4 knows the secret.
+The end. No secret now!
