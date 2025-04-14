@@ -9,16 +9,16 @@ using namespace std;
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
+ 
+    int n;
+    cin >> n;
 
-    string s;
-    cin >> s;
-
-    int aCount = 0, res = 0;
-    for (char c : s)
-        if (c == 'a')
-            aCount++;
-        else
-            res += aCount;
+    string res;
+    for (int i = 1; i <= n; i++) {
+        string s = to_string(i);
+        if (res.find(s) == -1)
+            res += s;
+    }
 
     cout << res;
 }

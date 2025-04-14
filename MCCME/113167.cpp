@@ -10,15 +10,12 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    string s;
-    cin >> s;
+    int size;
+    cin >> size;
 
-    int aCount = 0, res = 0;
-    for (char c : s)
-        if (c == 'a')
-            aCount++;
-        else
-            res += aCount;
+    vector<int> a(size);
+    for (int &value : a)
+        cin >> value;
 
-    cout << res;
+    cout << (is_heap(a.begin(), a.end()) ? "YES" : "NO");
 }

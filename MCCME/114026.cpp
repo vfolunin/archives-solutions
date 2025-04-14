@@ -10,15 +10,8 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    string s;
-    cin >> s;
+    long long a, b;
+    cin >> a >> b;
 
-    int aCount = 0, res = 0;
-    for (char c : s)
-        if (c == 'a')
-            aCount++;
-        else
-            res += aCount;
-
-    cout << res;
+    cout << (a || b ? a * b / (a + b) : 0);
 }
