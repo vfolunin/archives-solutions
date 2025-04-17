@@ -1,0 +1,10 @@
+A black red tree is a binary search tree where each node has a color attribute  the value of which is either black or red  In addition to the ordinary requirements imposed on binary search trees  the following requirements apply to black red trees 
+   A node is either black or red 
+   The root is red   This rule is sometimes omitted from other definitions  Since the root can always be changed from black to red  but not necessarily vice versa  this rule has little effect on analysis  
+   All leaves are the same color as the root 
+   Both children of every black node are red 
+   Every simple path from a given node to any of its descendant leaves contains the same number of red nodes 
+   
+Notably  maximizing the average fill factor in a structurally equivalent B tree is the same as reducing the total height of the multicolored tree  by increasing the number of non red nodes 
+   
+Words  Black  and  Red  can be changed to   and   
