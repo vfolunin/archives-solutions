@@ -7,9 +7,9 @@ class Solution {
     }
     
 public:
-    vector<string> getWordsInLongestSubsequence(int size, vector<string> &words, vector<int> &a) {       
-        vector<int> len(size, 1), from(size, -1);
-        for (int i = 0; i < size; i++) {
+    vector<string> getWordsInLongestSubsequence(vector<string> &words, vector<int> &a) {       
+        vector<int> len(words.size(), 1), from(words.size(), -1);
+        for (int i = 0; i < words.size(); i++) {
             for (int j = 0; j < i; j++) {
                 if (a[i] != a[j] && words[i].size() == words[j].size() && diff(words[i], words[j]) == 1 && len[i] < len[j] + 1) {
                     len[i] = len[j] + 1;
