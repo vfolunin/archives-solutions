@@ -24,8 +24,8 @@ set<int> dfs(vector<vector<int>> &graph, int v, int p, vector<int> &values, vect
 }
 
 int main() {
-    //freopen("input.txt", "r", stdin);
-    //freopen("output.txt", "w", stdout);
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
 
     int vertexCount;
     cin >> vertexCount;
