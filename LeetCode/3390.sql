@@ -1,4 +1,3 @@
-
 WITH RECURSIVE PassTeams AS (
     SELECT T1.team_name team1, T2.team_name team2, time_stamp
     FROM Passes JOIN Teams T1 ON pass_from = T1.player_id JOIN Teams T2 ON pass_to = T2.player_id    
