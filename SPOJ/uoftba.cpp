@@ -6,20 +6,24 @@
 #include <string>
 using namespace std;
 
-long long binPow(long long x, long long p, long long mod) {
-    if (!p)
-        return 1 % mod;
-    if (p % 2)
-        return binPow(x, p - 1, mod) * x % mod;
-    long long r = binPow(x, p / 2, mod);
-    return r * r % mod;
-}
-
 void solve() {
-    long long n, e, m;
-    cin >> n >> e >> m;
+    string s;
+    cin >> s;
 
-    cout << binPow(m, e, n) << "\n";
+    int level = (s[0] - '1') * 4 + s[2] - '1';
+
+    int res = 0;
+    if (level < 2) {
+        res += 2 - level;
+        level = 12;
+    }
+    if (level < 14) {
+        res += 14 - level;
+        level = 28;
+    }
+    res += 32 - level;
+
+    cout << res << "\n";
 }
 
 int main() {
