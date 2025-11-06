@@ -6,6 +6,17 @@
 #include <string>
 using namespace std;
 
+void solve() {
+    int size;
+    cin >> size;
+    cin.ignore();
+
+    string s;
+    getline(cin, s);
+
+    cout << string((size - s.size() + 1) / 2, '*') << s << string((size - s.size()) / 2, '*') << "\n";
+}
+
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
@@ -14,5 +25,5 @@ int main() {
     cin >> n;
 
     for (int i = 0; i < n; i++)
-        cout << "I " << (i % 2 ? "love" : "hate") << (i + 1 < n ? " that " : " it");
+        solve();
 }
