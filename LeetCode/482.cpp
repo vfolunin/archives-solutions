@@ -12,7 +12,7 @@ public:
             }
         }
         
-        if (res.back() == '-')
+        if (!res.empty() && res.back() == '-')
             res.pop_back();
         reverse(res.begin(), res.end());
         return res;

@@ -1,7 +1,7 @@
 class Solution {
 public:
     int reverse(int x) {
-        string s = to_string(abs(x));
+        string s = to_string(llabs(x));
         ::reverse(s.begin(), s.end());
         if (x < 0)
             s = "-" + s;

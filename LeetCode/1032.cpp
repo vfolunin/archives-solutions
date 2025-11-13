@@ -1,9 +1,9 @@
 class Trie {
     struct Vertex {
         bool isTerminal = false;
-        map<char, Vertex> next;
+        unordered_map<char, Vertex> next;
         Vertex *sufLink = nullptr;
-        map<char, Vertex *> autLink;
+        vector<Vertex *> autLink;
     } root, *state;
 
 public:
@@ -24,15 +24,16 @@ public:
             q.pop();
 
             for (auto &[c, to] : v->next) {
-                to.sufLink = (v == &root ? &root : v->sufLink->autLink[c]);                
+                to.sufLink = (v == &root ? &root : v->sufLink->autLink[c - 'a']);                
                 q.push(&to);
             }
 
+            v->autLink.resize(alphabetSize);
             for (char c = 'a'; c < 'a' + alphabetSize; c++) {
                 if (v->next.count(c))
-                    v->autLink[c] = &v->next[c];
+                    v->autLink[c - 'a'] = &v->next[c];
                 else
-                    v->autLink[c] = (v == &root ? &root : v->sufLink->autLink[c]);
+                    v->autLink[c - 'a'] = (v == &root ? &root : v->sufLink->autLink[c - 'a']);
             }
 
             v->isTerminal |= v->sufLink->isTerminal;
@@ -42,7 +43,7 @@ public:
     }
 
     bool consume(char c) {
-        state = state->autLink[c];
+        state = state->autLink[c - 'a'];
         return state->isTerminal;
     }
 };
