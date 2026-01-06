@@ -1,0 +1,36 @@
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+#include <vector>
+#include <set>
+#include <map>
+#include <string>
+using namespace std;
+
+struct Point {
+    double x, y;
+
+    Point() {}
+
+    Point(double x, double y) : x(x), y(y) {}
+
+    Point(const Point &a, const Point &b) : x(b.x - a.x), y(b.y - a.y) {}
+
+    double crossProduct(const Point &that) const {
+        return x * that.y - y * that.x;
+    }
+
+    friend istream &operator >> (istream &in, Point &p) {
+        return in >> p.x >> p.y;
+    }
+};
+
+int main() {
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+
+    Point a, b, c;
+    cin >> a >> b >> c;
+
+    cout << fixed << abs(Point(a, b).crossProduct(Point(a, c))) / 2;
+}
