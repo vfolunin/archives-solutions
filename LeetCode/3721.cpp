@@ -43,18 +43,6 @@ struct SegmentTree {
         }
     }
 
-    Data query(int v, int vl, int vr, int l, int r) {
-        push(v, vl, vr);
-        if (vr < l || r < vl)
-            return {};
-        if (l <= vl && vr <= r)
-            return t[v];
-        int vm = vl + (vr - vl) / 2;
-        Data ql = query(2 * v + 1, vl, vm, l, r);
-        Data qr = query(2 * v + 2, vm + 1, vr, l, r);
-        return Data(ql, qr);
-    }
-
     void modify(int v, int vl, int vr, int l, int r, int value) {
         push(v, vl, vr);
         if (vr < l || r < vl)
