@@ -40,6 +40,9 @@ bool can(int vertexCount, vector<Edge> &edges, int threshold) {
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
+    
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
 
     int vertexCount, edgeCount;
     cin >> vertexCount >> edgeCount;
