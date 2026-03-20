@@ -13,8 +13,11 @@ int main() {
     int sum;
     cin >> sum;
 
-    if (sum == -999)
-        cout << "-998 -1";
-    else
-        cout << 1 << " " << sum - 1;
+    for (int a = -999; a <= 999; a++) {
+        int b = sum - a;
+        if (a && b && -999 <= b && b <= 999) {
+            cout << a << " " << b;
+            break;
+        }
+    }
 }
