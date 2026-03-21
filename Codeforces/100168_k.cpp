@@ -6,23 +6,37 @@
 #include <string>
 using namespace std;
 
+struct Point {
+    double x, y;
+
+    Point(double x, double y) : x(x), y(y) {}
+
+    friend ostream &operator << (ostream &out, const Point &p) {
+        return out << p.x << " " << p.y;
+    }
+};
+
+struct Line {
+    double a, b, c;
+
+    Point intersection(const Line &that) const {
+        double d = a * that.b - b * that.a;
+        double dx = -c * that.b - b * -that.c;
+        double dy = a * -that.c - -c * that.a;
+        return Point(dx / d, dy / d);
+    }
+
+    friend istream &operator >> (istream &in, Line &l) {
+        return in >> l.a >> l.b >> l.c;
+    }
+};
+
 int main() {
     freopen("intersec1.in", "r", stdin);
     freopen("intersec1.out", "w", stdout);
 
-    int size;
-    cin >> size;
+    Line la, lb;
+    cin >> la >> lb;
 
-    vector<vector<long double>> p(size + 1, vector<long double>(2));
-    p[0][1] = 1;
-
-    for (int i = 1; i < p.size(); i++) {
-        long double curP;
-        cin >> curP;
-
-        p[i][1] = p[i - 1][1] * curP + p[i - 1][0] * (1 - curP);
-        p[i][0] = p[i - 1][0] * curP + p[i - 1][1] * (1 - curP);
-    }
-
-    cout << fixed << p.back()[1];
+    cout << fixed << la.intersection(lb);
 }
