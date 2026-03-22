@@ -6,7 +6,7 @@
 #include <string>
 using namespace std;
 
-struct TwoSets {
+struct MedianFinder {
     multiset<int> l, r;
 
     void rebalance() {
@@ -48,15 +48,15 @@ int main() {
     int size;
     cin >> size;
 
-    TwoSets twoSets;
+    MedianFinder medianFinder;
     long long res = 0;
 
     for (int i = 0; i < size; i++) {
         int value;
         cin >> value;
 
-        twoSets.insert(value);
-        res += twoSets.getMedian();
+        medianFinder.insert(value);
+        res += medianFinder.getMedian();
     }
 
     cout << res;
