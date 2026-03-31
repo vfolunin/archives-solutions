@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <unordered_set>
+#include <unordered_map>
 #include <map>
 #include <string>
 using namespace std;
@@ -13,22 +13,23 @@ bool solve() {
 	if (!reviewCount && !paperCount)
 		return 0;
 
-	vector<string> name(paperCount);
-	vector<unordered_set<int>> reviewers(paperCount);
-	for (int i = 0; i < paperCount; i++) {
-		cin >> name[i];
-		for (int j = 0; j < reviewCount; j++) {
+	vector<string> university(paperCount);
+	vector<unordered_map<int, int>> reviewers(paperCount);
+	for (int reviewer = 0; reviewer < paperCount; reviewer++) {
+		cin >> university[reviewer];
+		for (int i = 0; i < reviewCount; i++) {
 			int paper;
 			cin >> paper;
-			reviewers[paper - 1].insert(i);
+			paper--;
+			reviewers[paper][reviewer]++;
 		}
 	}
 
 	int problemCount = 0;
-	for (int i = 0; i < paperCount; i++) {
-		bool hasProblem = reviewers[i].size() != reviewCount;
-		for (int reviewer : reviewers[i])
-			hasProblem |= name[reviewer] == name[i];
+	for (int paper = 0; paper < paperCount; paper++) {
+		bool hasProblem = reviewers[paper].size() != reviewCount;
+		for (auto [reviewer, count] : reviewers[paper])
+			hasProblem |= university[reviewer] == university[paper] || count > 1;
 		problemCount += hasProblem;
 	}
 
