@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <vector>
 #include <set>
-#include <map>
+#include <unordered_map>
 #include <string>
 using namespace std;
 
@@ -13,7 +13,7 @@ int main() {
     int size;
     cin >> size;
 
-    map<int, int> count;
+    unordered_map<int, int> count;
     for (int i = 0; i < size; i++) {
         int value;
         cin >> value;
@@ -21,12 +21,9 @@ int main() {
         count[value]++;
     }
 
-    for (auto &[value, count] : count) {
-        if (count == 1) {
-            cout << value;
-            return 0;
-        }
-    }
+    int res = 0;
+    for (auto &[value, count] : count)
+        res += count < value ? count : count - value;
 
-    cout << -1;
+    cout << res;
 }
