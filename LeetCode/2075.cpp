@@ -8,7 +8,7 @@ public:
             for (int delta = 0; delta < h && x + delta < w; delta++)
                 res += s[delta * w + x + delta];
         
-        while (res.back() == ' ')
+        while (!res.empty() && res.back() == ' ')
             res.pop_back();
         
         return res;
