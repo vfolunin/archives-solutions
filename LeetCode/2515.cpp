@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int closetTarget(vector<string> &a, string target, int from) {
+    int closestTarget(vector<string> &a, string target, int from) {
         int res1 = 0;
         while (res1 < a.size() && a[(from + res1) % a.size()] != target)
             res1++;
