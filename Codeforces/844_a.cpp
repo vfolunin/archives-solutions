@@ -1,0 +1,21 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <unordered_set>
+#include <map>
+#include <string>
+using namespace std;
+
+int main() {
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+
+    string s;
+    int targetCount;
+    cin >> s >> targetCount;
+
+    if (s.size() >= targetCount)
+        cout << max<int>(targetCount - unordered_set<char>(s.begin(), s.end()).size(), 0);
+    else
+        cout << "impossible";
+}
