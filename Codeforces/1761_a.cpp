@@ -7,12 +7,10 @@
 using namespace std;
 
 void solve() {
-    string s;
-    cin >> s;
+    int n, a, b;
+    cin >> n >> a >> b;
 
-    sort(s.begin(), s.end());
-
-    cout << s << "\n";
+    cout << (a == n && b == n || a + b + 1 < n ? "YES\n" : "NO\n");
 }
 
 int main() {

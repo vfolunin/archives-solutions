@@ -7,12 +7,10 @@
 using namespace std;
 
 void solve() {
-    string s;
-    cin >> s;
+    int n, a, b;
+    cin >> n >> a >> b;
 
-    sort(s.begin(), s.end());
-
-    cout << s << "\n";
+    cout << (abs(a - b) % 2 == 0 ? "YES\n" : "NO\n");
 }
 
 int main() {

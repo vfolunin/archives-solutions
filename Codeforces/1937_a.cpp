@@ -7,12 +7,14 @@
 using namespace std;
 
 void solve() {
-    string s;
-    cin >> s;
+    int n;
+    cin >> n;
 
-    sort(s.begin(), s.end());
+    int res = 1;
+    while (res * 2 <= n)
+        res *= 2;
 
-    cout << s << "\n";
+    cout << res << "\n";
 }
 
 int main() {
