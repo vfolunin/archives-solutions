@@ -6,7 +6,7 @@ class Solution {
     }
     
 public:
-    vector<int> leftRigthDifference(vector<int> &p) {
+    vector<int> leftRightDifference(vector<int> &p) {
         partial_sum(p.begin(), p.end(), p.begin());
         
         vector<int> res(p.size());
