@@ -10,14 +10,17 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    int delta, h, m;
-    cin >> delta >> h >> m;
+    long long a, b;
+    cin >> a >> b;
 
-    int time = h * 60 + m, res = 0;
-    while (time % 60 % 10 != 7 && time / 60 % 10 != 7) {
-        res++;
-        time = (time - delta + 24 * 60) % (24 * 60);
+    while (a && b) {
+        if (a >= 2 * b)
+            a %= 2 * b;
+        else if (b >= 2 * a)
+            b %= 2 * a;
+        else
+            break;
     }
 
-    cout << res;
+    cout << a << " " << b;
 }

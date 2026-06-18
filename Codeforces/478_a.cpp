@@ -10,11 +10,13 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    int size, digitRoot;
-    cin >> size >> digitRoot;
+    int sum = 0;
+    for (int i = 0; i < 5; i++) {
+        int value;
+        cin >> value;
 
-    if (size > 1 && !digitRoot)
-        cout << "No solution";
-    else
-        cout << digitRoot << string(size - 1, '0');
+        sum += value;
+    }
+
+    cout << (sum && sum % 5 == 0 ? sum / 5 : -1);
 }

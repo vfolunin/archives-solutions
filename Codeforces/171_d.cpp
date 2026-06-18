@@ -10,11 +10,10 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    int size, digitRoot;
-    cin >> size >> digitRoot;
+    int index;
+    cin >> index;
 
-    if (size > 1 && !digitRoot)
-        cout << "No solution";
-    else
-        cout << digitRoot << string(size - 1, '0');
+    vector<int> a = { 2, 3, 1, 2, 1 };
+
+    cout << a[index - 1];
 }

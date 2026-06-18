@@ -6,15 +6,22 @@
 #include <string>
 using namespace std;
 
+void solve() {
+    string s;
+    cin >> s >> s;
+
+    sort(s.begin(), s.end());
+
+    cout << s << "\n";
+}
+
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    int size, digitRoot;
-    cin >> size >> digitRoot;
+    int testCount;
+    cin >> testCount;
 
-    if (size > 1 && !digitRoot)
-        cout << "No solution";
-    else
-        cout << digitRoot << string(size - 1, '0');
+    for (int test = 0; test < testCount; test++)
+        solve();
 }

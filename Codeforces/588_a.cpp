@@ -10,13 +10,16 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    int delta, h, m;
-    cin >> delta >> h >> m;
+    int size;
+    cin >> size;
 
-    int time = h * 60 + m, res = 0;
-    while (time % 60 % 10 != 7 && time / 60 % 10 != 7) {
-        res++;
-        time = (time - delta + 24 * 60) % (24 * 60);
+    int minPrice = 1e9, res = 0;
+    for (int i = 0; i < size; i++) {
+        int amount, price;
+        cin >> amount >> price;
+
+        minPrice = min(minPrice, price);
+        res += amount * minPrice;
     }
 
     cout << res;

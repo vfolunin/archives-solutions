@@ -10,11 +10,16 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    int size, digitRoot;
-    cin >> size >> digitRoot;
+    int size;
+    cin >> size;
 
-    if (size > 1 && !digitRoot)
-        cout << "No solution";
-    else
-        cout << digitRoot << string(size - 1, '0');
+    vector<int> a(size);
+    for (int &value : a)
+        cin >> value;
+
+    int res = 0;
+    for (int value : a)
+        res = max(res, min(value - 1, (int)1e6 - value));
+
+    cout << res;
 }
