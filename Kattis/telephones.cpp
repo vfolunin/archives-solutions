@@ -26,7 +26,7 @@ bool solve() {
 
         int res = 0;
         for (auto &[cl, cr] : call)
-            res += cl < r &&l < cr;
+            res += cl < r && l < cr;
 
         cout << res << "\n";
     }
