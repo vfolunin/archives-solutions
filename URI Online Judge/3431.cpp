@@ -46,6 +46,9 @@ struct Graph {
             if (sccOf[v] == -1)
                 dfs2(v, sccCount++);
 
+        if (sccCount == 1)
+            return { 0, 0 };
+
         vector<bool> isSource(sccCount, 1), isSink(sccCount, 1);
         for (int v = 0; v < graph.size(); v++) {
             for (int to : graph[v]) {
