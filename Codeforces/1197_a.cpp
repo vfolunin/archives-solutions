@@ -10,7 +10,13 @@ void solve() {
     int size;
     cin >> size;
 
-    cout << (size % 2 == 0) << "\n";
+    vector<int> a(size);
+    for (int &value : a)
+        cin >> value;
+
+    sort(a.begin(), a.end());
+
+    cout << clamp(a[size - 2] - 1, 0, size - 2) << "\n";
 }
 
 int main() {

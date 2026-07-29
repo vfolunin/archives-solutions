@@ -7,15 +7,14 @@
 using namespace std;
 
 void solve() {
-    int size;
-    cin >> size;
+    long long a, b;
+    cin >> a >> b;
 
-    cout << (size % 2 == 0) << "\n";
+    cout << a * b << "\n";
 }
 
 int main() {
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("window.in", "r", stdin);
 
     int testCount;
     cin >> testCount;

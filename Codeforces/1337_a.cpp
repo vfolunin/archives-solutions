@@ -7,10 +7,10 @@
 using namespace std;
 
 void solve() {
-    int size;
-    cin >> size;
+    int a, b, c, d;
+    cin >> a >> b >> c >> d;
 
-    cout << (size % 2 == 0) << "\n";
+    cout << b << " " << c << " " << c << "\n";
 }
 
 int main() {

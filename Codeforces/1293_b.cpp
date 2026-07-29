@@ -6,20 +6,16 @@
 #include <string>
 using namespace std;
 
-void solve() {
-    int size;
-    cin >> size;
-
-    cout << (size % 2 == 0) << "\n";
-}
-
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    int testCount;
-    cin >> testCount;
+    int n;
+    cin >> n;
 
-    for (int test = 0; test < testCount; test++)
-        solve();
+    double res = 0;
+    for (int i = 1; i <= n; i++)
+        res += 1.0 / i;
+
+    cout << fixed << res;
 }

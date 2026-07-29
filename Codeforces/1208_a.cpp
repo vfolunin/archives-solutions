@@ -20,7 +20,7 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    int testCount = 1;
+    int testCount;
     cin >> testCount;
 
     for (int test = 0; test < testCount; test++)
