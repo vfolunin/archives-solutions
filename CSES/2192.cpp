@@ -62,6 +62,9 @@ struct Polygon {
 };
 
 int main() {
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+
     int pointCount, queryCount;
     cin >> pointCount >> queryCount;
 
