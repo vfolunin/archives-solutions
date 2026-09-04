@@ -21,19 +21,20 @@ int main() {
     int size;
     cin >> size;
 
-    map<Fraction, int> deltas;
+    map<Fraction, pair<int, int>> deltas;
     for (int i = 0; i < size; i++) {
         int x, y1, y2;
         cin >> x >> y1 >> y2;
 
-        deltas[{ y1, x }]++;
-        deltas[{ y2, x }]--;
+        deltas[{ y1, x }].first++;
+        deltas[{ y2, x }].second++;
     }
 
     int cur = 0, res = 0;
     for (auto &[_, delta] : deltas) {
-        cur += delta;
+        cur += delta.first;
         res = max(res, cur);
+        cur -= delta.second;
     }
 
     cout << res;
