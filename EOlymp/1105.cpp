@@ -6,21 +6,6 @@
 #include <string>
 using namespace std;
 
-int rec(vector<vector<int>> &dist, int mask, int last, vector<vector<int>> &memo) {
-    int &res = memo[mask][last];
-    if (res != -1)
-        return res;
-
-    if (mask == 1)
-        return res = 0;
-
-    res = 1e9;
-    for (int pred = ((mask - 1) & (mask - 2)) ? 1 : 0; pred < dist.size(); pred++)
-        if (pred != last && (mask & (1 << pred)))
-            res = min(res, rec(dist, mask ^ (1 << last), pred, memo) + dist[pred][last]);
-    return res;
-}
-
 int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
@@ -29,20 +14,36 @@ int main() {
     cin >> vertexCount;
     vertexCount++;
 
-    vector<vector<int>> dist(vertexCount, vector<int>(vertexCount));
+    vector<vector<int>> weight(vertexCount, vector<int>(vertexCount));
     for (int a = 0; a < vertexCount; a++)
         for (int b = 0; b < vertexCount; b++)
-            cin >> dist[a][b];
+            cin >> weight[a][b];
 
     for (int v = 0; v < vertexCount; v++)
         for (int a = 0; a < vertexCount; a++)
             for (int b = 0; b < vertexCount; b++)
-                dist[a][b] = min(dist[a][b], dist[a][v] + dist[v][b]);
+                weight[a][b] = min(weight[a][b], weight[a][v] + weight[v][b]);
 
-    vector<vector<int>> memo(1 << vertexCount, vector<int>(vertexCount, -1));
+    vector<vector<int>> dist(1 << vertexCount, vector<int>(vertexCount, 1e9));
+    dist[1][0] = 0;
+    
+    for (int mask = 2; mask < (1 << vertexCount); mask++) {
+        for (int last = 0; last < vertexCount; last++) {
+            if (!(mask & (1 << last)))
+                continue;
+            
+            for (int prev = 0; prev < vertexCount; prev++) {
+                if (prev == last || !(mask & (1 << prev)))
+                    continue;
+
+                dist[mask][last] = min(dist[mask][last], dist[mask ^ (1 << last)][prev] + weight[prev][last]);
+            }
+        }
+    }
+
     int res = 1e9;
     for (int last = 1; last < vertexCount; last++)
-        res = min(res, rec(dist, (1 << vertexCount) - 1, last, memo) + dist[last][0]);
+        res = min(res, dist[(1 << vertexCount) - 1][last] + weight[last][0]);
 
     cout << res;
 }
