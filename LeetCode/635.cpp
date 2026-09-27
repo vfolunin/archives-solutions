@@ -21,7 +21,7 @@ long long getTime(const string &s, const string &type, bool add) {
 }
 
 class LogSystem {
-    map<long long, int> ids;
+    multimap<long long, int> ids;
 
 public:
     void put(int id, const string &time) {

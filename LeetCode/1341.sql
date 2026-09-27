@@ -9,8 +9,8 @@ UNION ALL
 (
     SELECT title AS results
     FROM MovieRating JOIN Movies USING(movie_id)
-    WHERE LEFT(created_at, 7) = "2020-02"
+    WHERE DATE("2020-02-01") <= created_at AND created_at < DATE("2020-03-01")
     GROUP BY movie_id
-    ORDER BY AVG(rating) DESC, title 
+    ORDER BY AVG(rating) DESC, title
     LIMIT 1
 );

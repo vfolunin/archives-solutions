@@ -1,13 +1,13 @@
 class Treap {
-    inline static minstd_rand gen;
+    inline static minstd_rand generator;
 
     struct Node {
         int key, priority, size = 1;
         Node *left = 0, *right = 0;
-        Node(int key) : key(key), priority(gen()) {}
+        Node(int key) : key(key), priority(generator()) {}
     } *root = 0;
 
-    int getSize(Node *n) const {
+    int getSize(Node *n) {
         return n ? n->size : 0;
     }
 
@@ -64,21 +64,13 @@ public:
 
 class Solution {
 public:
-    int subarraysWithMoreOnesThanZeroes(vector<int> &a) {
-        const long long MOD = 1e9 + 7;
-
-        int sum = 0;
-        Treap treap;
-        treap.insert(sum);
-
-        long long res = 0;
-
-        for (int value : a) {
-            sum += value ? 1 : -1;
-            res = (res + treap.lessCount(sum)) % MOD;
-            treap.insert(sum);
+    vector<int> countSmallerOppositeParity(vector<int> &a) {
+        vector<Treap> treap(2);
+        vector<int> res(a.size());
+        for (int i = a.size() - 1; i >= 0; i--) {
+            res[i] = treap[1 - a[i] % 2].lessCount(a[i]);
+            treap[a[i] % 2].insert(a[i]);
         }
-
         return res;
     }
 };
