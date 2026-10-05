@@ -7,13 +7,14 @@
 using namespace std;
 
 bool solve() {
-    int sp, py, sy, j;
+    long long sp, py, sy, j;
     if (!(cin >> sp >> py >> sy >> j))
         return 0;
 
-    for (int y = 0; y <= j + 12; y++) {
-        for (int p = y; y + p <= j + 12; p++) {
-            int s = j + 12 - y - p;
+    long long middle = (j + 12 - sp - 2 * py) / 3;
+    for (long long y = max(0LL, middle - 2); y <= middle + 2; y++) {
+        for (long long p = max(y, y + py - 1); p <= y + py + 1 && y + p <= j + 12; p++) {
+            long long s = j + 12 - y - p;
             if (s < p)
                 continue;
 
