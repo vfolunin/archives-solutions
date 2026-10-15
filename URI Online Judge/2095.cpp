@@ -10,31 +10,23 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    int soldierCount;
-    cin >> soldierCount;
+    int size;
+    cin >> size;
 
-    multiset<int> armyA;
-    for (int i = 0; i < soldierCount; i++) {
-        int skill;
-        cin >> skill;
-        armyA.insert(skill);
-    }
+    vector<int> a(size);
+    for (int &value : a)
+        cin >> value;
+    sort(a.begin(), a.end());
 
-    multiset<int> armyB;
-    for (int i = 0; i < soldierCount; i++) {
-        int skill;
-        cin >> skill;
-        armyB.insert(skill);
-    }
+    vector<int> b(size);
+    for (int &value : b)
+        cin >> value;
+    sort(b.begin(), b.end());
 
-    int winCount = 0;
-    for (int skill : armyB) {
-        auto it = armyA.lower_bound(skill);
-        if (it != armyA.begin()) {
-            winCount++;
-            armyA.erase(--it);
-        }
-    }
+    int ai = 0;
+    for (int bi = 0; bi < b.size(); bi++)
+        if (b[bi] > a[ai])
+            ai++;
 
-    cout << winCount << "\n";
+    cout << ai << "\n";
 }

@@ -25,8 +25,8 @@ bool solve() {
     }
 
     int a = circleSize - 1, b = 1, d = 0;
-    int da[] = { -1, -1, 0, 1, 1, 0 };
-    int db[] = { 1, 0, -1, -1, 0, 1 };
+    vector<int> da = { -1, -1, 0, 1, 1, 0 };
+    vector<int> db = { 1, 0, -1, -1, 0, 1 };
     while (n >= circleSize) {
         n -= circleSize;
         a += da[d] * (circleSize - 1);
