@@ -1,0 +1,29 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <set>
+#include <map>
+#include <string>
+using namespace std;
+
+void solve() {
+    vector<int> a(3);
+    for (int &value : a)
+        cin >> value;
+
+    for (int i = 0; i < 5; i++)
+        (*min_element(a.begin(), a.end()))++;
+
+    cout << a[0] * a[1] * a[2] << "\n";
+}
+
+int main() {
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+
+    int testCount;
+    cin >> testCount;
+
+    for (int test = 0; test < testCount; test++)
+        solve();
+}
