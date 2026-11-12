@@ -1,0 +1,20 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <set>
+#include <map>
+#include <string>
+using namespace std;
+
+int main() {
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+
+    int n, k;
+    cin >> n >> k;
+
+    if (k == 0 || k == n)
+        cout << "0 0";
+    else
+        cout << "1 " << min(k * 2, n - k);
+}
