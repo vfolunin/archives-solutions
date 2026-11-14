@@ -1,0 +1,26 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <set>
+#include <map>
+#include <string>
+using namespace std;
+
+int main() {
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+
+    string s;
+    cin >> s >> s;
+    s += '0';
+
+    int row = 0;
+    for (char c : s) {
+        if (c == '1') {
+            row++;
+        } else {
+            cout << row;
+            row = 0;
+        }
+    }
+}
