@@ -13,7 +13,7 @@ int main() {
     int size;
     cin >> size;
 
-    int l = -1e9, r = 1e9;
+    int l = -2e9, r = 2e9;
 
     for (int i = 0; i < size; i++) {
         int x, limit;
